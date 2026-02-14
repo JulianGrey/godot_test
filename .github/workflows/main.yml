@@ -11,6 +11,10 @@ env:
   GODOT_VERSION: 4.6 # Make sure this matches your project version!
   EXPORT_NAME: top_down_chaos
 
+# 3. PERMISSIONS (Crucial Fix)
+permissions:
+  contents: write
+
 jobs:
   export_game:
     name: Export Game
