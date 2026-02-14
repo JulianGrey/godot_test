@@ -47,4 +47,6 @@ position = Vector2(-420, 299)
 
 [node name="HUD" parent="." unique_id=376391160 instance=ExtResource("4_aqk2v")]
 
-[node name="VersionOverlay" parent="HUD" unique_id=1494358576 instance=ExtResource("6_dwbse")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2094065325]
+
+[node name="VersionOverlay" parent="CanvasLayer" unique_id=1494358576 instance=ExtResource("6_dwbse")]
