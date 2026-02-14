@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://cny22oupr70gx"]
+
+[ext_resource type="Script" uid="uid://dst7nj6d20pb" path="res://win_screen.gd" id="1_a03an"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ok131"]
+font_size = 48
+
+[node name="WinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a03an")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "YOU WON!"
+label_settings = SubResource("LabelSettings_ok131")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 69.0
+offset_right = 168.0
+offset_bottom = 100.0
+text = "Play Again"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

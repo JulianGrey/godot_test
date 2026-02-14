@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cun3yc4mcwcpv"]
+
+[ext_resource type="Script" uid="uid://dl26aj1ha27e" path="res://coin.gd" id="1_0t63x"]
+[ext_resource type="Texture2D" uid="uid://cqyffgy7yln38" path="res://icon.svg" id="1_d5gmh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0t63x"]
+radius = 31.016125
+
+[sub_resource type="Gradient" id="Gradient_0t63x"]
+offsets = PackedFloat32Array(0.0088495575, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1, 1, 1, 0)
+
+[node name="Coin" type="Area2D"]
+script = ExtResource("1_0t63x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_d5gmh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0t63x")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." groups=["coins"]]
+emitting = false
+amount = 15
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 20.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 5.0
+scale_amount_max = 15.0
+color_ramp = SubResource("Gradient_0t63x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

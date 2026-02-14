@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://btv62oaniqky"]
+
+[ext_resource type="Script" uid="uid://xf2nb8ayidrw" path="res://world.gd" id="1_036b0"]
+[ext_resource type="PackedScene" uid="uid://chw01xglefkhe" path="res://player.tscn" id="1_fj7yv"]
+[ext_resource type="Texture2D" uid="uid://cqyffgy7yln38" path="res://icon.svg" id="2_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://cun3yc4mcwcpv" path="res://coin.tscn" id="3_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://dqx3r4j6hre0i" path="res://hud.tscn" id="4_aqk2v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqk2v"]
+size = Vector2(24, 727)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_036b0")
+
+[node name="Player" parent="." instance=ExtResource("1_fj7yv")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+modulate = Color(0.14044744, 0.14044744, 0.14044744, 1)
+position = Vector2(-338.25, 65.49999)
+scale = Vector2(0.19140631, 5.6796875)
+texture = ExtResource("2_tlwt5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-338, 66.5)
+shape = SubResource("RectangleShape2D_aqk2v")
+
+[node name="Coin" parent="." instance=ExtResource("3_tlwt5")]
+position = Vector2(294, 170)
+
+[node name="Coin2" parent="." instance=ExtResource("3_tlwt5")]
+position = Vector2(285, -92)
+
+[node name="Coin3" parent="." instance=ExtResource("3_tlwt5")]
+position = Vector2(49, 335)
+
+[node name="Coin4" parent="." instance=ExtResource("3_tlwt5")]
+position = Vector2(-107, 271)
+
+[node name="Coin5" parent="." instance=ExtResource("3_tlwt5")]
+position = Vector2(-444, -164)
+
+[node name="Coin6" parent="." instance=ExtResource("3_tlwt5")]
+position = Vector2(-420, 299)
+
+[node name="HUD" parent="." instance=ExtResource("4_aqk2v")]

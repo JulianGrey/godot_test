@@ -1,0 +1,9 @@
+# Godot-specific ignores
+.godot/
+/android/
+/ios/
+*.translation
+
+# Exported builds (we will build these in CI)
+builds/
+dist/
