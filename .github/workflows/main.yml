@@ -51,6 +51,7 @@ jobs:
       
       - name: Unzip Web Build
         run: |
+          ls -R builds
           mkdir public
           unzip builds/Web.zip -d public
           # GitHub Pages expects index.html at root of the deployed folder
