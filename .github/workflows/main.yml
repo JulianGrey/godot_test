@@ -26,7 +26,15 @@ jobs:
       # A. Checkout code
       - name: Checkout
         uses: actions/checkout@v4
-      
+
+      # B1. Cache Godot & Templates
+      - name: Cache Godot
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.local/share/godot
+          key: godot-${{ env.GODOT_VERSION }}
+
       # B. Setup Godot & Export
       # This action handles downloading Godot and templates for you.
       - name: Build Web & Windows
