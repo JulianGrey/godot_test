@@ -33,14 +33,6 @@ jobs:
         run: |
           sed -i "s/DEV_BUILD/${{ github.ref_name }}/g" Global.gd
 
-      # B1. Cache Godot & Templates
-      - name: Cache Godot
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.local/share/godot
-          key: godot-${{ env.GODOT_VERSION }}
-
       # B. Setup Godot & Export
       # This action handles downloading Godot and templates for you.
       - name: Build Web & Windows
@@ -50,6 +42,7 @@ jobs:
           godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
           relative_project_path: ./
           archive_output: true # Zips the build automatically
+          cache: true # Caches Godot and templates for faster builds
 
       # C. Upload Artifacts (So you can download them from the Actions tab)
       - name: Upload Artifact
