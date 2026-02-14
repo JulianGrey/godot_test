@@ -43,22 +43,27 @@ jobs:
     needs: export_game
     runs-on: ubuntu-latest
     steps:
+      # 1. CHECKOUT IS MANDATORY HERE TOO
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Download the build
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
           name: game-builds
           path: builds
       
+      # 3. Prepare the folder
       - name: Unzip Web Build
         run: |
-          ls -R builds
           mkdir public
           unzip builds/Web.zip -d public
-          # GitHub Pages expects index.html at root of the deployed folder
-      
+
+      # 4. Deploy
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: public
           branch: gh-pages
-          single-commit: true # This forces it to just wipe the branch and upload fresh
+          single-commit: true
