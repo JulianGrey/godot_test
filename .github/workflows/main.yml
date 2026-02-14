@@ -87,8 +87,8 @@ jobs:
           name: game-builds
           path: builds
 
-      - name: Zip the Windows Build
-        run: zip -r Windows_Build.zip builds/Windows\ Desktop.zip
+      - name: Rename Windows Build
+        run: mv builds/Windows\ Desktop.zip Windows_Build.zip
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
@@ -96,4 +96,5 @@ jobs:
           files: |
             Windows_Build.zip
             builds/Web.zip
+            builds/macOS.zip
           generate_release_notes: true # Auto-generates changelog from commits!
