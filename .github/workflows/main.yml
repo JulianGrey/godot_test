@@ -60,4 +60,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: public
-          branch: gh-pages # The branch the action pushes to
+          branch: gh-pages
+          single-commit: true # This forces it to just wipe the branch and upload fresh
