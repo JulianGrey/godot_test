@@ -1,0 +1,62 @@
+name: "Godot CI/CD"
+
+# 1. Trigger on push to main
+on:
+  push:
+    branches:
+      - main
+
+# 2. Environment variables
+env:
+  GODOT_VERSION: 4.6 # Make sure this matches your project version!
+  EXPORT_NAME: top_down_chaos
+
+jobs:
+  export_game:
+    name: Export Game
+    runs-on: ubuntu-latest
+    
+    steps:
+      # A. Checkout code
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      # B. Setup Godot & Export
+      # This action handles downloading Godot and templates for you.
+      - name: Build Web & Windows
+        uses: firebelley/godot-export@v5.2.1
+        with:
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
+          relative_project_path: ./
+          archive_output: true # Zips the build automatically
+
+      # C. Upload Artifacts (So you can download them from the Actions tab)
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: game-builds
+          path: /home/runner/.local/share/godot/archives/ # Default output of the action
+
+  # OPTIONAL: Deploy to GitHub Pages
+  deploy_web:
+    needs: export_game
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: game-builds
+          path: builds
+      
+      - name: Unzip Web Build
+        run: |
+          mkdir public
+          unzip builds/Web.zip -d public
+          # GitHub Pages expects index.html at root of the deployed folder
+      
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: public
+          branch: gh-pages # The branch the action pushes to
