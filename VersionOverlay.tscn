@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dwtn6w4jqi8wm"]
+
+[ext_resource type="Script" uid="uid://cji2ini0aq16f" path="res://versionLabel.gd" id="1_8saep"]
+
+[node name="VersionOverlay" type="Control" unique_id=1494358576]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=552226536]
+layout_mode = 0
+offset_left = 985.0
+offset_top = 613.0
+offset_right = 1138.0
+offset_bottom = 636.0
+horizontal_alignment = 2
+script = ExtResource("1_8saep")

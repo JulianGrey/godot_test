@@ -27,6 +27,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # A2. Inject Version Number
+      - name: Inject Version
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          sed -i "s/DEV_BUILD/${{ github.ref_name }}/g" Global.gd
+
       # B1. Cache Godot & Templates
       - name: Cache Godot
         uses: actions/cache@v4

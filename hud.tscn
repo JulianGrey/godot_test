@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqx3r4j6hre0i"]
+[gd_scene format=3 uid="uid://dqx3r4j6hre0i"]
 
 [ext_resource type="Script" uid="uid://76b8bei3j8ae" path="res://hud.gd" id="1_37p78"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_64ctp"]
 font_size = 32
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" unique_id=1430367761]
 script = ExtResource("1_37p78")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=707395337]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Score: 0"
