@@ -27,11 +27,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # A2. Inject Version Number
+      # A2. Inject Version and Build Number
       - name: Inject Version
-        if: startsWith(github.ref, 'refs/tags/')
+        # Note: We remove the 'if' so build numbers increment even on non-tag pushes
         run: |
+          # Inject the version (Tag name or "main")
           sed -i "s/DEV_BUILD/${{ github.ref_name }}/g" Global.gd
+          
+          # Inject the build number (Global incrementing counter)
+          sed -i "s/var build_number: String = \"0\"/var build_number: String = \"${{ github.run_number }}\"/g" Global.gd
 
       # B. Setup Godot & Export
       # This action handles downloading Godot and templates for you.
